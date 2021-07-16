@@ -26,27 +26,24 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             datePicker.setOnDateChangedListener((view, year, monthOfYear, dayOfMonth) -> {
 
-                String month = String.valueOf(++monthOfYear);
-                if (month.length() < 2){
-                    month = "0" + month;
-                }
-
-                String day = String.valueOf(dayOfMonth);
-                if (day.length() < 2){
-                    day = "0" + dayOfMonth;
-                }
-
-                String date = day + "/" + month + "/" + year;
+                String month = setUpDate(++monthOfYear);
+                String day = setUpDate(dayOfMonth);
 
                 Bundle bundle = new Bundle();
-                bundle.putString("date",date);
+                bundle.putString("date", day + "/" + month + "/" + year);
 
                 ResultFragment resultFragment = new ResultFragment();
-                resultFragment.setArguments(bundle); // send argument to FillDetailsDialogFragment
-                resultFragment.show(this.getSupportFragmentManager(), "result fragment"); //show FillDetailsDialogFragment
-
+                resultFragment.setArguments(bundle);
+                resultFragment.show(this.getSupportFragmentManager(), "result fragment");
             });
         }
     }
 
+    private String setUpDate(int date){
+        String fixedDate = String.valueOf(date);
+        if (fixedDate.length() < 2){
+            fixedDate = "0" + fixedDate;
+        }
+        return fixedDate;
+    }
 }
