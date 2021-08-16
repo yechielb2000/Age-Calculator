@@ -1,16 +1,9 @@
 package com.example.agecalculator;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentActivity;
-
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.widget.DatePicker;
-
-import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,11 +19,8 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             datePicker.setOnDateChangedListener((view, year, monthOfYear, dayOfMonth) -> {
 
-                String month = setUpDate(++monthOfYear);
-                String day = setUpDate(dayOfMonth);
-
                 Bundle bundle = new Bundle();
-                bundle.putString("date", day + "/" + month + "/" + year);
+                bundle.putString("date", setUpDate(dayOfMonth) + "/" + setUpDate(++monthOfYear) + "/" + year);
 
                 ResultFragment resultFragment = new ResultFragment();
                 resultFragment.setArguments(bundle);

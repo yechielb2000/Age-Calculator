@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -24,23 +26,17 @@ public class ResultFragment extends DialogFragment {
 
         TextView result = view.findViewById(R.id.result);
 
-        Date calender = Calendar.getInstance().getTime();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-        String currentDate = simpleDateFormat.format(calender);
+        String currentDate = simpleDateFormat.format(Calendar.getInstance().getTime());
 
         Bundle bundle = this.getArguments();
         if (bundle != null) {
 
-            String date = bundle.getString("date", "Your date is suck!");
+            String date = bundle.getString("date", null);
 
             try {
-                Date thisDay = simpleDateFormat.parse(currentDate);
-                Date birthday = simpleDateFormat.parse(date);
-
-                assert thisDay != null;
-                assert birthday != null;
-                long numberOfDays = thisDay.getTime() - birthday.getTime();
-                result.setText("From: " + date + " to: " + currentDate + "\nYou live " + TimeUnit.DAYS.convert(numberOfDays, TimeUnit.MILLISECONDS) + " days");
+                long numberOfDays = simpleDateFormat.parse(currentDate).getTime() - simpleDateFormat.parse(date).getTime();
+                result.setText("From: " + date + " To: " + currentDate + "\nYou live " + TimeUnit.DAYS.convert(numberOfDays, TimeUnit.MILLISECONDS) + " days");
 
             } catch (ParseException e) {
                 result.setText("Error: " + e.getMessage() + "\nPlease let me know about it\nMy email: Yechielb2000@gmail.com");

@@ -21,7 +21,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/pick_date"
+        android:text="@string/select_your_birthday"
         android:textSize="24sp"
         android:textColor="@color/purple_700"/>
 
