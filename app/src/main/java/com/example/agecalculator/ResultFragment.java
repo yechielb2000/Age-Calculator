@@ -36,7 +36,7 @@ public class ResultFragment extends DialogFragment {
 
             try {
                 long numberOfDays = simpleDateFormat.parse(currentDate).getTime() - simpleDateFormat.parse(date).getTime();
-                result.setText("From: " + date + " To: " + currentDate + "\nYou live " + TimeUnit.DAYS.convert(numberOfDays, TimeUnit.MILLISECONDS) + " days");
+                result.setText("Start: " + date + " End: " + currentDate + "\nYou live " + TimeUnit.DAYS.convert(numberOfDays, TimeUnit.MILLISECONDS) + " days");
 
             } catch (ParseException e) {
                 result.setText("Error: " + e.getMessage() + "\nPlease let me know about it\nMy email: Yechielb2000@gmail.com");
